@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { FlatList } from 'react-native';
 import { DataListProps } from '.';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
     flex:1;
@@ -98,3 +99,11 @@ export const TransactionsList = styled(FlatList as new () => FlatList<DataListPr
         paddingBottom: getBottomSpace()
     }
 })``;
+
+export const LogOutButton = styled(BorderlessButton)``;
+
+export const LoadingContainer = styled.View`
+    flex:1;
+    justify-content: center;
+    align-items:center;
+`;
