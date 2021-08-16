@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import { useNavigation } from '@react-navigation/native'
 import Dashboard from '../Dashboard';
+import { useAuth } from '../../hooks/auth';
 
 
 interface FormData {
@@ -26,10 +27,11 @@ type NavigationProps = {
 }
 const schema = Yup.object().shape({
     name: Yup.string().required('Nome é obrigatório.'),
-    amount: Yup.number().typeError('Informe um valor numérico.').positive('O valor não pode ser negativo'),
+    amount: Yup.number().typeError('Informe um valor numérico.').positive('O valor não pode ser negativo').required('O valor é obrigatório'),
 })
 export default function Register() {
-    const dataKey = '@gofinances:transactions';
+    const { user } = useAuth();
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const [category, setCategory] = useState({
         key: 'category',
         name: 'Categoria'
